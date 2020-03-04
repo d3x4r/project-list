@@ -1,11 +1,27 @@
 import React from 'react';
-import { getPsd2HtmlProjects } from '../../services';
-
+import { Switch, Route } from 'react-router-dom';
 import './Main.css';
+import Psd2htmlPage from '../pages/Psd2htmlPage';
+import JsPage from '../pages/JsPage';
+import ReactPage from '../pages/ReactPage';
 
 const Main = () => {
-  console.log(getPsd2HtmlProjects());
-  return <main>main</main>;
+  return (
+    <Switch>
+      <Route path="/psd2html">
+        <Psd2htmlPage />
+      </Route>
+      <Route path="/js">
+        <JsPage />
+      </Route>
+      <Route path="/react">
+        <ReactPage />
+      </Route>
+      <Route path="/">
+        <main>default</main>
+      </Route>
+    </Switch>
+  );
 };
 
 export default Main;
