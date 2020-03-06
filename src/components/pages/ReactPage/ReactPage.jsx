@@ -5,6 +5,12 @@ import ProjectsList from '../../ProjectsList';
 import Filters from '../../Filters';
 import { fetchReactProjects, clear, setReactProjectsFilter } from '../../../actions';
 
+const testSpinner = () => (
+  <div className="spinner-grow" role="status">
+    <span className="sr-only">Loading...</span>
+  </div>
+);
+
 const ReactPage = (props) => {
   const {
     projects,
@@ -25,7 +31,7 @@ const ReactPage = (props) => {
     <div>
       <h1>React Page</h1>
       <Filters filterHandler={setReactProjectsFilter} currentFilter={currentFilter} />
-      {load ? <span>loading</span> : <ProjectsList items={projects} />}
+      {load ? testSpinner() : <ProjectsList items={projects} />}
     </div>
   );
 };

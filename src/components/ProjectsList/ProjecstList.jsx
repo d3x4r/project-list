@@ -1,4 +1,5 @@
 import React from 'react';
+import ProjectItem from '../ProjectItem';
 import './ProjectsList.css';
 
 const ProjectsList = ({ items }) => {
@@ -8,7 +9,7 @@ const ProjectsList = ({ items }) => {
   return (
     <div>
       {items.map((item) => (
-        <p key={item.id}>{item.title}</p>
+        <ProjectItem data={item} key={item.id} />
       ))}
     </div>
   );
