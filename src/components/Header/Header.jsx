@@ -12,8 +12,8 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" to="/psd2html">
-                psd2html
+              <Link className="nav-link" to="/react">
+                React
               </Link>
             </li>
             <li className="nav-item">
@@ -22,8 +22,8 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/react">
-                React
+              <Link className="nav-link" to="/psd2html">
+                psd2html
               </Link>
             </li>
           </ul>
