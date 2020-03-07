@@ -33,8 +33,8 @@ const ReactPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { projects, load, error, currentFilter } = state;
+const mapStateToProps = ({ reactProjects }) => {
+  const { projects, load, error, currentFilter } = reactProjects;
 
   const filteredProjects = projects.filter((project) => {
     const { year } = project;

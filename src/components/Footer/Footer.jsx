@@ -17,7 +17,6 @@ const Footer = () => {
         >
           <GitHubIcon className="footer__github-link" width={30} height={30} alt="github profile" />
         </a>
-        <span className="footer__text">2020</span>
       </div>
     </footer>
   );

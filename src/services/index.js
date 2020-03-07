@@ -14,7 +14,7 @@ const getJsProjects = () => {
 
 const getReactProjects = () => {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(psd2htmlProjects), 1500);
+    setTimeout(() => resolve(reactProjects), 1500);
   });
 };
 

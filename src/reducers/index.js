@@ -1,11 +1,13 @@
+import { combineReducers } from 'redux';
+
 const initialState = {
   projects: [],
-  load: null,
-  error: null,
+  load: false,
+  error: false,
   currentFilter: '',
 };
 
-const reducer = (state = initialState, action) => {
+const reactProjects = (state = initialState, action) => {
   switch (action.type) {
     case 'REACT_PROJECTS_REQUEST':
       return { ...state, load: true, error: false };
@@ -26,4 +28,25 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+const psd2htmlProjects = (state = initialState, action) => {
+  switch (action.type) {
+    case 'PSD2HTML_PROJECTS_REQUEST':
+      return { ...state, load: true, error: false };
+    case 'PSD2HTML_PROJECTS_SUCCESS': {
+      const { data } = action.payload;
+      return { ...state, load: false, projects: data };
+    }
+    case 'PSD2HTML_PROJECTS_FAILURE':
+      return { ...state, load: false, error: true };
+
+    case 'SET_PSD2HTML_PROJECTS_FILTER':
+      return { ...state, currentFilter: action.payload };
+
+    case 'CLEAR':
+      return { ...state, load: false, error: false, projects: [] };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ reactProjects, psd2htmlProjects });
