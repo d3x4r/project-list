@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -14,7 +15,6 @@ const Psd2htmlPage = (props) => {
   const {
     projects,
     load,
-    error,
     fetchPsd2HtmlProjects,
     setPSD2HTMLProjectsFilter,
     currentFilter,
@@ -59,7 +59,6 @@ const mapDispatchToProps = {
 Psd2htmlPage.propTypes = {
   projects: PropTypes.instanceOf(Array).isRequired,
   load: PropTypes.bool.isRequired,
-  error: PropTypes.bool.isRequired,
   fetchPsd2HtmlProjects: PropTypes.func.isRequired,
   setPSD2HTMLProjectsFilter: PropTypes.func.isRequired,
   currentFilter: PropTypes.string.isRequired,

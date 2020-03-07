@@ -49,4 +49,25 @@ const psd2htmlProjects = (state = initialState, action) => {
   }
 };
 
-export default combineReducers({ reactProjects, psd2htmlProjects });
+const jsProjects = (state = initialState, action) => {
+  switch (action.type) {
+    case 'JS_PROJECTS_REQUEST':
+      return { ...state, load: true, error: false };
+    case 'JS_PROJECTS_SUCCESS': {
+      const { data } = action.payload;
+      return { ...state, load: false, projects: data };
+    }
+    case 'JS_PROJECTS_FAILURE':
+      return { ...state, load: false, error: true };
+
+    case 'SET_JS_PROJECTS_FILTER':
+      return { ...state, currentFilter: action.payload };
+
+    case 'CLEAR':
+      return { ...state, load: false, error: false, projects: [] };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ reactProjects, psd2htmlProjects, jsProjects });

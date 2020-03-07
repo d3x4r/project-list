@@ -1,4 +1,4 @@
-import { getReactProjects, getPsd2HtmlProjects } from '../services';
+import { getReactProjects, getPsd2HtmlProjects, getJsProjects } from '../services';
 
 const sendReactRequest = () => {
   return {
@@ -12,6 +12,12 @@ const sendPSD2HTMLRequest = () => {
   };
 };
 
+const sendJsRequest = () => {
+  return {
+    type: 'JS_PROJECTS_REQUEST',
+  };
+};
+
 const loadReactProjects = (projects) => {
   return {
     type: 'REACT_PROJECTS_SUCCESS',
@@ -22,6 +28,13 @@ const loadReactProjects = (projects) => {
 const loadPSD2HTMLProjects = (projects) => {
   return {
     type: 'PSD2HTML_PROJECTS_SUCCESS',
+    payload: { data: projects },
+  };
+};
+
+const loadJsProjects = (projects) => {
+  return {
+    type: 'JS_PROJECTS_SUCCESS',
     payload: { data: projects },
   };
 };
@@ -40,6 +53,13 @@ const loadPSD2HTMLProjectsError = (err) => {
   };
 };
 
+const loadJsProjectsError = (err) => {
+  return {
+    type: 'JS_PROJECTS_FAILURE',
+    payload: err,
+  };
+};
+
 const setReactProjectsFilter = (filterValue) => {
   return {
     type: 'SET_REACT_PROJECTS_FILTER',
@@ -50,6 +70,13 @@ const setReactProjectsFilter = (filterValue) => {
 const setPSD2HTMLProjectsFilter = (filterValue) => {
   return {
     type: 'SET_PSD2HTML_PROJECTS_FILTER',
+    payload: filterValue,
+  };
+};
+
+const setJsProjectsFilter = (filterValue) => {
+  return {
+    type: 'SET_JS_PROJECTS_FILTER',
     payload: filterValue,
   };
 };
@@ -80,10 +107,23 @@ const fetchPsd2HtmlProjects = () => async (dispatch) => {
   }
 };
 
+const fetchJsProjects = () => async (dispatch) => {
+  dispatch(sendJsRequest());
+
+  try {
+    const jsProjects = await getJsProjects();
+    dispatch(loadJsProjects(jsProjects));
+  } catch (err) {
+    dispatch(loadJsProjectsError(err));
+  }
+};
+
 export {
   fetchReactProjects,
   setReactProjectsFilter,
-  setPSD2HTMLProjectsFilter,
-  clear,
   fetchPsd2HtmlProjects,
+  setPSD2HTMLProjectsFilter,
+  fetchJsProjects,
+  setJsProjectsFilter,
+  clear,
 };
