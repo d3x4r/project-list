@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './ReactPage.css';
 import ProjectsList from '../../ProjectsList';
 import Filters from '../../Filters';
+import ProjectListHeader from '../../ProjectListHeader';
 import { fetchReactProjects, clear, setReactProjectsFilter } from '../../../actions';
 
 const testSpinner = () => (
@@ -10,6 +11,8 @@ const testSpinner = () => (
     <span className="sr-only">Loading...</span>
   </div>
 );
+
+const PageHeader = ProjectListHeader('React projects', Filters);
 
 const ReactPage = (props) => {
   const {
@@ -29,8 +32,7 @@ const ReactPage = (props) => {
 
   return (
     <div>
-      <h1>React Page</h1>
-      <Filters filterHandler={setReactProjectsFilter} currentFilter={currentFilter} />
+      <PageHeader filterHandler={setReactProjectsFilter} currentFilter={currentFilter} />
       {load ? testSpinner() : <ProjectsList items={projects} />}
     </div>
   );
