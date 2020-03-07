@@ -14,9 +14,22 @@
 
 /* because standart bootstrap selector */
 .project-item .projet-item__watch-icon {
-  margin-left: 10px;
+  margin-left: 0;
+}
+
+.projet-item__github-icon {
+  margin-right: 10px;
 }
 
 .project-item__card-wrapper {
   padding: 20px;
+}
+
+.project-item__links-wrapper {
+  display: flex;
+}
+
+.project-item__link {
+  width: 32px;
+  height: 32px;
 }

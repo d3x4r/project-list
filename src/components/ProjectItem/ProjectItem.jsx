@@ -6,6 +6,30 @@ import GitHubIcon from '-!svg-react-loader!../../assets/img/github-logo.svg';
 import StartProjectIcon from '-!svg-react-loader!../../assets/img/play-button.svg';
 import './ProjectItem.css';
 
+const gitHubLink = (href) => (
+  <a
+    href={href}
+    className="card-link project-item__link projet-item__github-icon"
+    target="_blank"
+    rel="noreferrer noopener"
+    title="github link"
+  >
+    <GitHubIcon className="project-item__icon" width={30} height={30} alt="github link" />
+  </a>
+);
+
+const onlineLink = (href) => (
+  <a
+    href={href}
+    className="card-link project-item__link projet-item__watch-icon"
+    target="_blank"
+    rel="noreferrer noopener"
+    title="watch online"
+  >
+    <StartProjectIcon className="project-item__icon" width={32} height={32} alt="watch online" />
+  </a>
+);
+
 const ProjectItem = ({ data }) => {
   const { title, preview, keyWords, github, web } = data;
   const keyWordsString = `Keywords: ${keyWords.join(', ')}.`;
@@ -26,29 +50,10 @@ const ProjectItem = ({ data }) => {
             <p className="card-text">
               <small className="text-muted">{keyWordsString}</small>
             </p>
-            <a
-              href={github}
-              className="card-link"
-              target="_blank"
-              rel="noreferrer noopener"
-              title="github link"
-            >
-              <GitHubIcon className="project-item__icon" width={30} height={30} alt="github link" />
-            </a>
-            <a
-              href={web}
-              className="card-link projet-item__watch-icon"
-              target="_blank"
-              rel="noreferrer noopener"
-              title="watch online"
-            >
-              <StartProjectIcon
-                className="project-item__icon"
-                width={32}
-                height={32}
-                alt="watch online"
-              />
-            </a>
+            <div className="project-item__links-wrapper">
+              {github && gitHubLink(github)}
+              {web && onlineLink(web)}
+            </div>
           </div>
         </div>
       </div>
