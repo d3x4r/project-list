@@ -26,7 +26,7 @@ const ReactPage = (props) => {
   }, [fetchReactProjects, clear]);
 
   return (
-    <div>
+    <div className="react-page container">
       <PageHeader filterHandler={setReactProjectsFilter} currentFilter={currentFilter} />
       {load ? <Spinner /> : <ProjectsList items={projects} />}
     </div>

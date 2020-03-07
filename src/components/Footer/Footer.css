@@ -1,0 +1,26 @@
+.footer {
+  padding-top: 10;
+  padding-bottom: 10;
+  background-color: #343a40;
+}
+
+.footer__github-link g {
+  fill: white;
+}
+
+.footer__container {
+  padding-top: 14px;
+  padding-bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__text {
+  color: white;
+}
+
+.footer__link {
+  margin-right: 15px;
+}

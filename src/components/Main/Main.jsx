@@ -7,20 +7,22 @@ import ReactPage from '../pages/ReactPage';
 
 const Main = () => {
   return (
-    <Switch>
-      <Route path="/psd2html">
-        <Psd2htmlPage />
-      </Route>
-      <Route path="/js">
-        <JsPage />
-      </Route>
-      <Route path="/react">
-        <ReactPage />
-      </Route>
-      <Route path="/">
-        <main>default</main>
-      </Route>
-    </Switch>
+    <main>
+      <Switch>
+        <Route path="/psd2html">
+          <Psd2htmlPage />
+        </Route>
+        <Route path="/js">
+          <JsPage />
+        </Route>
+        <Route path="/react">
+          <ReactPage />
+        </Route>
+        <Route path="/">
+          <div>default</div>
+        </Route>
+      </Switch>
+    </main>
   );
 };
 
