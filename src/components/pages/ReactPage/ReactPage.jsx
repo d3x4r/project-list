@@ -4,13 +4,8 @@ import './ReactPage.css';
 import ProjectsList from '../../ProjectsList';
 import Filters from '../../Filters';
 import ProjectListHeader from '../../ProjectListHeader';
+import Spinner from '../../Spinner';
 import { fetchReactProjects, clear, setReactProjectsFilter } from '../../../actions';
-
-const testSpinner = () => (
-  <div className="spinner-grow" role="status">
-    <span className="sr-only">Loading...</span>
-  </div>
-);
 
 const PageHeader = ProjectListHeader('React projects', Filters);
 
@@ -33,7 +28,7 @@ const ReactPage = (props) => {
   return (
     <div>
       <PageHeader filterHandler={setReactProjectsFilter} currentFilter={currentFilter} />
-      {load ? testSpinner() : <ProjectsList items={projects} />}
+      {load ? <Spinner /> : <ProjectsList items={projects} />}
     </div>
   );
 };

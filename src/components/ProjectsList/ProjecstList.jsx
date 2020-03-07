@@ -7,7 +7,7 @@ const ProjectsList = ({ items }) => {
     return <div>Data not found</div>;
   }
   return (
-    <div>
+    <div className="projects-list">
       {items.map((item) => (
         <ProjectItem data={item} key={item.id} />
       ))}
