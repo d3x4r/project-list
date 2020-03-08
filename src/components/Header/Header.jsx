@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import classnames from 'classnames';
 import './Header.css';
 
@@ -23,11 +23,24 @@ const renderLinks = (links, clickHandler) => {
 const resetNavState = (linksList) => linksList.map((link) => ({ ...link, active: false }));
 
 const Header = () => {
-  const [links, setActiveLink] = useState([
-    { name: 'React', href: '/react', active: false },
-    { name: 'JS', href: '/js', active: false },
-    { name: 'psd2html', href: '/psd2html', active: false },
-  ]);
+  const currentActivePath = useHistory().location.pathname;
+
+  const getDefaultLinksState = () => {
+    const linksNames = ['React', 'JS', 'psd2html'];
+
+    return linksNames.map((link) => {
+      const href = `/${link.toLowerCase()}`;
+      return {
+        name: link,
+        href,
+        active: href === currentActivePath,
+      };
+    });
+  };
+
+  const defailtLinksState = getDefaultLinksState();
+
+  const [links, setActiveLink] = useState(defailtLinksState);
 
   const onLinkClickHandler = (targetHref) => () => {
     const updatedLinksState = links.reduce((acc, link) => {
