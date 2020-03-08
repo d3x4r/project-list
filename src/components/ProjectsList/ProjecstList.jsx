@@ -6,6 +6,7 @@ const ProjectsList = ({ items }) => {
   if (items.length === 0) {
     return <div>Data not found</div>;
   }
+
   return (
     <div className="projects-list">
       {items.map((item) => (
