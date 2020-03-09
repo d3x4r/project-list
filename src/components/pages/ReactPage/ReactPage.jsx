@@ -1,33 +1,26 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './ReactPage.css';
 import ProjectsList from '../../ProjectsList';
 import Filters from '../../Filters';
 import ProjectListHeader from '../../ProjectListHeader';
 import Spinner from '../../Spinner';
-import { fetchReactProjects, clear, setReactProjectsFilter } from '../../../actions';
+import { fetchReactProjects, removeProjects, setReactProjectsFilter } from '../../../actions';
 
 const PageHeader = ProjectListHeader('React projects', Filters);
 
 const ReactPage = (props) => {
-  const {
-    projects,
-    load,
-    error,
-    fetchReactProjects,
-    setReactProjectsFilter,
-    currentFilter,
-    clear,
-  } = props;
+  const { projects, load, fetchProjects, setProjectsFilter, currentFilter, resetState } = props;
 
   useEffect(() => {
-    fetchReactProjects();
-    return () => clear();
-  }, [fetchReactProjects, clear]);
+    fetchProjects();
+    return () => resetState();
+  }, [fetchProjects, resetState]);
 
   return (
     <div className="react-page container">
-      <PageHeader filterHandler={setReactProjectsFilter} currentFilter={currentFilter} />
+      <PageHeader filterHandler={setProjectsFilter} currentFilter={currentFilter} />
       {load ? <Spinner /> : <ProjectsList items={projects} />}
     </div>
   );
@@ -50,9 +43,18 @@ const mapStateToProps = ({ reactProjects }) => {
 };
 
 const mapDispatchToProps = {
-  fetchReactProjects,
-  clear,
-  setReactProjectsFilter,
+  fetchProjects: fetchReactProjects,
+  setProjectsFilter: setReactProjectsFilter,
+  resetState: removeProjects,
+};
+
+ReactPage.propTypes = {
+  projects: PropTypes.instanceOf(Array).isRequired,
+  load: PropTypes.bool.isRequired,
+  fetchProjects: PropTypes.func.isRequired,
+  setProjectsFilter: PropTypes.func.isRequired,
+  currentFilter: PropTypes.string.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReactPage);

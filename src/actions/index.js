@@ -81,8 +81,8 @@ const setJsProjectsFilter = (filterValue) => {
   };
 };
 
-const clear = () => ({
-  type: 'CLEAR',
+const removeProjects = () => ({
+  type: 'REMOVE_PROJECTS',
 });
 
 const fetchReactProjects = () => async (dispatch) => {
@@ -125,5 +125,5 @@ export {
   setPSD2HTMLProjectsFilter,
   fetchJsProjects,
   setJsProjectsFilter,
-  clear,
+  removeProjects,
 };

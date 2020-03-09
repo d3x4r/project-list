@@ -21,7 +21,7 @@ const reactProjects = (state = initialState, action) => {
     case 'SET_REACT_PROJECTS_FILTER':
       return { ...state, currentFilter: action.payload };
 
-    case 'CLEAR':
+    case 'REMOVE_PROJECTS':
       return { ...state, load: false, error: false, projects: [] };
     default:
       return state;
@@ -42,7 +42,7 @@ const psd2htmlProjects = (state = initialState, action) => {
     case 'SET_PSD2HTML_PROJECTS_FILTER':
       return { ...state, currentFilter: action.payload };
 
-    case 'CLEAR':
+    case 'REMOVE_PROJECTS':
       return { ...state, load: false, error: false, projects: [] };
     default:
       return state;
@@ -63,7 +63,7 @@ const jsProjects = (state = initialState, action) => {
     case 'SET_JS_PROJECTS_FILTER':
       return { ...state, currentFilter: action.payload };
 
-    case 'CLEAR':
+    case 'REMOVE_PROJECTS':
       return { ...state, load: false, error: false, projects: [] };
     default:
       return state;

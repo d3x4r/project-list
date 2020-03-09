@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,28 +6,21 @@ import ProjectsList from '../../ProjectsList';
 import Filters from '../../Filters';
 import ProjectListHeader from '../../ProjectListHeader';
 import Spinner from '../../Spinner';
-import { fetchPsd2HtmlProjects, clear, setPSD2HTMLProjectsFilter } from '../../../actions';
+import { fetchPsd2HtmlProjects, setPSD2HTMLProjectsFilter, removeProjects } from '../../../actions';
 
 const PageHeader = ProjectListHeader('Psd2HTML projects', Filters);
 
 const Psd2htmlPage = (props) => {
-  const {
-    projects,
-    load,
-    fetchPsd2HtmlProjects,
-    setPSD2HTMLProjectsFilter,
-    currentFilter,
-    clear,
-  } = props;
+  const { projects, load, fetchProjects, setProjectsFilter, currentFilter, resetState } = props;
 
   useEffect(() => {
-    fetchPsd2HtmlProjects();
-    return () => clear();
-  }, [fetchPsd2HtmlProjects, clear]);
+    fetchProjects();
+    return () => resetState();
+  }, [fetchProjects, resetState]);
 
   return (
     <div className="react-page container">
-      <PageHeader filterHandler={setPSD2HTMLProjectsFilter} currentFilter={currentFilter} />
+      <PageHeader filterHandler={setProjectsFilter} currentFilter={currentFilter} />
       {load ? <Spinner /> : <ProjectsList items={projects} />}
     </div>
   );
@@ -51,18 +43,18 @@ const mapStateToProps = ({ psd2htmlProjects }) => {
 };
 
 const mapDispatchToProps = {
-  fetchPsd2HtmlProjects,
-  clear,
-  setPSD2HTMLProjectsFilter,
+  fetchProjects: fetchPsd2HtmlProjects,
+  setProjectsFilter: setPSD2HTMLProjectsFilter,
+  resetState: removeProjects,
 };
 
 Psd2htmlPage.propTypes = {
   projects: PropTypes.instanceOf(Array).isRequired,
   load: PropTypes.bool.isRequired,
-  fetchPsd2HtmlProjects: PropTypes.func.isRequired,
-  setPSD2HTMLProjectsFilter: PropTypes.func.isRequired,
+  fetchProjects: PropTypes.func.isRequired,
+  setProjectsFilter: PropTypes.func.isRequired,
   currentFilter: PropTypes.string.isRequired,
-  clear: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Psd2htmlPage);

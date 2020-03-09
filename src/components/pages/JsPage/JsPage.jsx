@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,21 +6,21 @@ import ProjectsList from '../../ProjectsList';
 import Filters from '../../Filters';
 import ProjectListHeader from '../../ProjectListHeader';
 import Spinner from '../../Spinner';
-import { fetchJsProjects, clear, setJsProjectsFilter } from '../../../actions';
+import { fetchJsProjects, removeProjects, setJsProjectsFilter } from '../../../actions';
 
 const PageHeader = ProjectListHeader('Javascript projects', Filters);
 
 const JsPage = (props) => {
-  const { projects, load, fetchJsProjects, setJsProjectsFilter, currentFilter, clear } = props;
+  const { projects, load, fetchProjects, setProjectsFilter, currentFilter, resetState } = props;
 
   useEffect(() => {
-    fetchJsProjects();
-    return () => clear();
-  }, [fetchJsProjects, clear]);
+    fetchProjects();
+    return () => resetState();
+  }, [fetchProjects, resetState]);
 
   return (
     <div className="react-page container">
-      <PageHeader filterHandler={setJsProjectsFilter} currentFilter={currentFilter} />
+      <PageHeader filterHandler={setProjectsFilter} currentFilter={currentFilter} />
       {load ? <Spinner /> : <ProjectsList items={projects} />}
     </div>
   );
@@ -44,18 +43,18 @@ const mapStateToProps = ({ jsProjects }) => {
 };
 
 const mapDispatchToProps = {
-  fetchJsProjects,
-  clear,
-  setJsProjectsFilter,
+  fetchProjects: fetchJsProjects,
+  setProjectsFilter: setJsProjectsFilter,
+  resetState: removeProjects,
 };
 
 JsPage.propTypes = {
   projects: PropTypes.instanceOf(Array).isRequired,
   load: PropTypes.bool.isRequired,
-  fetchJsProjects: PropTypes.func.isRequired,
-  setJsProjectsFilter: PropTypes.func.isRequired,
+  fetchProjects: PropTypes.func.isRequired,
+  setProjectsFilter: PropTypes.func.isRequired,
   currentFilter: PropTypes.string.isRequired,
-  clear: PropTypes.func.isRequired,
+  resetState: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(JsPage);
