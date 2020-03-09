@@ -5,6 +5,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  font-family: 'Oxanium', 'Comic Sans', cursive;
 }
 
 .content-container {

@@ -63,7 +63,7 @@ const Header = () => {
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
         <div className="container">
           <Link className="navbar-brand" to="/" onClick={onLogoClick}>
-            Logo
+            Projects List
           </Link>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">{renderLinks(links, onLinkClickHandler)}</ul>

@@ -3,8 +3,11 @@ import './MainPage.css';
 
 const MainPage = () => (
   <div className="container main-page">
-    <h1 className="main-page__title">Title</h1>
-    <p className="main-page__text">Text</p>
+    <p className="main-page__text">This is the main page of the app.</p>
+    <p className="main-page__text">There is no content here yet</p>
+    <p className="main-page__text">
+      But you can use the navigation menu at the top of the page to view other sections
+    </p>
   </div>
 );
 

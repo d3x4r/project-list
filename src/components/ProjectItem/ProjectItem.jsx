@@ -32,8 +32,10 @@ const onlineLink = (href) => (
 );
 
 const ProjectItem = ({ data }) => {
-  const { title, preview, keyWords, github, web } = data;
+  const { title, preview, keyWords, github, web, description } = data;
   const keyWordsString = `Keywords: ${keyWords.join(', ')}.`;
+
+  const defaultItemDescription = `The "${title}" project has no description yet. But it may be coming soon`;
 
   return (
     <div className="card mb-3 project-item">
@@ -44,10 +46,7 @@ const ProjectItem = ({ data }) => {
         <div className="col-md-8">
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
-            <p className="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional
-              content. This content is a little bit longer.
-            </p>
+            <p className="card-text">{description || defaultItemDescription}</p>
             <p className="card-text">
               <small className="text-muted">{keyWordsString}</small>
             </p>
